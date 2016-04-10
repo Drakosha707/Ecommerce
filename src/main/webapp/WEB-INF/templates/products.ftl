@@ -28,7 +28,8 @@
                                        </h4>
                                        <p>${product.description}</p>
                                    </div>
-                                   <button class="btn btn-default btn-block">В корзину</button>
+                                   <button class="btn btn-default btn-block add-bucket-btn" onclick="addBucket(${product.id})">В корзину</button>
+                                   <span style="display: none">Товар добавлен</span>
                                </div>
                            </div>
                        </#list>
@@ -38,4 +39,4 @@
         </div>
     </div>
 </#macro>
-<@main title="Вход" customStyles=["css/shop-homepage.css"]/>
+<@main title="Вход" customStyles=["css/shop-homepage.css"] customScripts=["js/bucket.js"]/>

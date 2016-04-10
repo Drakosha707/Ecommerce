@@ -25,7 +25,7 @@
                 </li>
             <#if auth??>
                 <li>
-                    <a href="/bucket">Корзина</a>
+                    <a href="/bucket/all">Корзина</a>
                 </li>
                 <li>
                     <a href="/settings">Настройки</a>
