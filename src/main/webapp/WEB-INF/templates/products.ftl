@@ -23,12 +23,14 @@
                            <div class="col-sm-4 col-lg-4 col-md-4">
                                <div class="thumbnail">
                                    <div class="caption">
-                                       <h4 class="pull-right">${product.price}</h4>
+                                       <h4 class="pull-right">${product.price} руб.</h4>
                                        <h4><a href="/products/detail?id=${product.id}">${product.name}</a>
                                        </h4>
                                        <p>${product.description}</p>
                                    </div>
-                                   <button class="btn btn-default btn-block add-bucket-btn" onclick="addBucket(${product.id})">В корзину</button>
+                                   <#if auth??>
+                                       <button class="btn btn-default btn-block add-bucket-btn" onclick="addBucket(${product.id})">В корзину</button>
+                                   </#if>
                                    <span style="display: none">Товар добавлен</span>
                                </div>
                            </div>

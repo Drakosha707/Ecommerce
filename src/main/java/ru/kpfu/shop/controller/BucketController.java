@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import ru.kpfu.shop.model.Bucket;
+import ru.kpfu.shop.model.ShippingInfo;
 import ru.kpfu.shop.repository.BucketRepository;
+import ru.kpfu.shop.repository.UserRepository;
 import ru.kpfu.shop.service.BucketService;
 import ru.kpfu.shop.util.SecurityUtils;
 
@@ -24,6 +26,9 @@ public class BucketController {
 
     @Autowired
     BucketRepository bucketRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
@@ -52,17 +57,19 @@ public class BucketController {
     @RequestMapping(value = "/buy", method = RequestMethod.GET)
     public String buyProductsPage(Model model) {
         List<Bucket> bucketList = bucketRepository.findAllByUser(SecurityUtils.getCurrentUser());
+        ShippingInfo shippingInfo = userRepository.findOne(SecurityUtils.getCurrentUser().getId()).getShippingInfo();
+
         Integer sum = 0;
         for (Bucket bucket : bucketList) {
             sum += (bucket.getNumberProduct() * bucket.getProduct().getPrice());
         }
         model.addAttribute("buckets", bucketList);
+        model.addAttribute("shipping", shippingInfo);
         model.addAttribute("sum", sum);
 
         return "order";
 
     }
-
 
 
 }

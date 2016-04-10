@@ -6,18 +6,22 @@
                     <h3 class="panel-title">Доставка</h3>
                 </div>
                 <div class="panel-body">
-                    <form class="form-signin form-block" id="registration-form" role="form" action="/registration" method="post">
-                        <h2 class="form-signin-heading">Регистрация</h2>
-                        <input type="login" class="form-control" name="login" id="login" placeholder="Логин" required autofocus>
-                        <span class="error" id="loginExists">Логин занят</span>
-                        <input type="password" name="password" id="password" class="form-control" placeholder="Пароль" required>
-                        <input type="password" name="confirmPassword" id="confirm-password" class="form-control" placeholder="Пароль" required>
-                        <span class="error" id="passwordNotEqual">Пароли не совпадают</span>
-                        <button class="btn btn-lg btn-primary btn-block">Регистрация</button>
-                    </form>
+                   <div class="col-md-5">
+                       <form class="form-signin form-block"  role="form" action="/shipping" method="post">
+                           <h2 class="form-signin-heading">Информация о доставке</h2>
+                           <input type="hidden" name="id" value="${shipping.id}" ><br>
+                           <input type="text"  value="${shipping.fio}" class="form-control" name="fio" placeholder="ФИО" required autofocus><br>
+                           <input type="email" value="${shipping.email}" class="form-control" name="email" placeholder="email"><br>
+                           <input type="text" value="${shipping.phone}" class="form-control" name="phone" placeholder="Номер телефона"><br>
+                           <input type="text" value="${shipping.country}" class="form-control" name="country" placeholder="Страна" ><br>
+                           <input type="text" value="${shipping.city}" class="form-control" name="city" placeholder="Город"><br>
+                           <input type="text" value="${shipping.street}" class="form-control" name="street" placeholder="Улица"><br>
+                           <input type="text" value="${shipping.house}" class="form-control" name="house" placeholder="Дом"><br>
+                           <button class="btn btn-lg btn-primary btn-block">Ок</button>
+                       </form>
+                   </div>
                 </div>
             </div>
-    <a href="/bucket/buy" class="btn btn-success btn-block">Купить</a>
 </div> <!-- /container -->
 
 </#macro>

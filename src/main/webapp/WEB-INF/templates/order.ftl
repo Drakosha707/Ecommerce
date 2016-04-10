@@ -18,7 +18,23 @@
                 <h3>
                     Общая сумма: ${sum} руб.
                 </h3>
-                <button class="btn btn-success btn-block">Оформить</button>
+                <#if shipping?has_content>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Информация о доставке</h3>
+                        </div>
+                        <div class="panel-body">
+                            Страна: ${shipping.country} <br>
+                            Получатель: ${shipping.fio} <br>
+                            Город: ${shipping.city} <br>
+                            Улица: ${shipping.street} <br>
+                            Дом: ${shipping.house} <br>
+                        </div>
+                    </div>
+                    <button class="btn btn-success btn-block">Оформить</button>
+                <#else>
+                    <a href="/settings">Пожалуйста заполните информацию по доставке</a>
+                </#if>
             </div>
         </div>
     <#else>

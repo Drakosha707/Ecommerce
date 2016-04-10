@@ -13,6 +13,19 @@ function addBucket(id) {
     })
 }
 
+function deleteProduct(id) {
+    $.ajax({
+        url: "/bucket/deleteProduct",
+        type: "POST",
+        data: {
+            id: id
+        },
+        success: function () {
+            window.location.href = "/bucket/all";
+            return true;
+        }
+    })
+}
 function changeNumberProduct(id) {
     var numberProduct = $('#numberProduct'+id).val();
     $.ajax({

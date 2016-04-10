@@ -15,7 +15,7 @@ public class Bucket {
 
     private Integer numberProduct;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     User user;
 
