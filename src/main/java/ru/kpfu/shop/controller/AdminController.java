@@ -12,7 +12,6 @@ import ru.kpfu.shop.model.Category;
 import ru.kpfu.shop.repository.CategoryRepository;
 import ru.kpfu.shop.repository.ProductRepository;
 import ru.kpfu.shop.service.ProductService;
-import ru.kpfu.shop.util.PropertyPath;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -27,7 +26,7 @@ public class AdminController {
     @Autowired
     CategoryRepository categoryRepository;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String getAdminPage(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
         return "add-product";
@@ -56,10 +55,4 @@ public class AdminController {
         categoryRepository.save(category);
         return "add-category";
     }
-    @RequestMapping(value = "/products", method = RequestMethod.GET)
-    public String getAllProducts(Model model) {
-        model.addAttribute("products", productRepository.findAll());
-        return "products";
-    }
-
 }

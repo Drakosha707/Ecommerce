@@ -2,6 +2,7 @@
 
 <@security.authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
     <@security.authentication property="principal.login" var="auth"/>
+    <@security.authentication property="principal.role" var="role"/>
 </@security.authorize>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -29,6 +30,14 @@
                 <li>
                     <a href="/settings">Настройки</a>
                 </li>
+                <li>
+                    <a href="/logout">Выйти</a>
+                </li>
+                <#if role == 'ROLE_ADMIN'>
+                    <li>
+                        <a href="/admin/index">Админ</a>
+                    </li>
+                </#if>
             <#else>
                 <li>
                     <a href="/login">Вход</a>
