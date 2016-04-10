@@ -3,6 +3,7 @@ package ru.kpfu.shop.model;
 import ru.kpfu.shop.model.enums.UserRole;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -19,6 +20,10 @@ public class User {
 
     @Enumerated(value = EnumType.STRING)
     private UserRole role;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "shipping_info_id")
+    ShippingInfo shippingInfo;
 
     public User() {
     }
@@ -53,5 +58,13 @@ public class User {
 
     public void setRole(UserRole role) {
         this.role = role;
+    }
+
+    public ShippingInfo getShippingInfo() {
+        return shippingInfo;
+    }
+
+    public void setShippingInfo(ShippingInfo shippingInfo) {
+        this.shippingInfo = shippingInfo;
     }
 }

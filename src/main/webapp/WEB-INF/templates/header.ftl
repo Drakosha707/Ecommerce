@@ -1,3 +1,8 @@
+<#assign security=JspTaglibs["http://www.springframework.org/security/tags"]/>
+
+<@security.authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
+    <@security.authentication property="principal.login" var="auth"/>
+</@security.authorize>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -15,14 +20,23 @@
         <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#">Торты</a>
+                    <a href="/products">Торты</a>
+                </li>
+            <#if auth??>
+                <li>
+                    <a href="/bucket">Корзина</a>
                 </li>
                 <li>
-                    <a href="#">Корзина</a>
+                    <a href="/settings">Настройки</a>
+                </li>
+            <#else>
+                <li>
+                    <a href="/login">Вход</a>
                 </li>
                 <li>
-                    <a href="#">Мой кабинет</a>
+                    <a href="/registration">Регистрация</a>
                 </li>
+            </#if>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import ru.kpfu.shop.model.User;
 import ru.kpfu.shop.repository.UserRepository;
+import ru.kpfu.shop.util.SecurityUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,6 @@ public class AuthProviderImpl implements AuthenticationProvider {
         if (!encoder.matches(password, user.getPassword())) {
             throw new BadCredentialsException("invalid password");
         }
-
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(user.getRole().toString()));
 
