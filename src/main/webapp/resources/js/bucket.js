@@ -1,6 +1,5 @@
 
 function addBucket(id) {
-    $(".add-bucket-btn")
     $.ajax({
         url: "/bucket/addProduct",
         type: "POST",
@@ -9,6 +8,22 @@ function addBucket(id) {
         },
         success: function () {
             alert('Товар успешно добавлен в корзину');
+            return true;
+        }
+    })
+}
+
+function changeNumberProduct(id) {
+    var numberProduct = $('#numberProduct'+id).val();
+    $.ajax({
+        url: "/bucket/changeNumberProduct",
+        type: "POST",
+        data: {
+            id: id,
+            number: numberProduct
+        },
+        success: function () {
+            alert('Изменено');
             return true;
         }
     })

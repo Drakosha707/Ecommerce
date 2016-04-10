@@ -51,8 +51,8 @@ public class BucketServiceImpl implements BucketService{
 
     @Override
     @Transactional
-    public void changeNumberProduct(Long productId, Integer numberProduct) {
-        Bucket bucket = bucketRepository.findOne(productId);
+    public void changeNumberProduct(Long bucketId, Integer numberProduct) {
+        Bucket bucket = bucketRepository.findOne(bucketId);
         bucket.setNumberProduct(numberProduct);
         bucketRepository.save(bucket);
     }

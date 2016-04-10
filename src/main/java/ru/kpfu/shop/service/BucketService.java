@@ -7,6 +7,6 @@ public interface BucketService {
 
     void deleteProduct(Long productId);
 
-    void changeNumberProduct(Long productId, Integer numberProduct);
+    void changeNumberProduct(Long bucketId, Integer numberProduct);
 
 }

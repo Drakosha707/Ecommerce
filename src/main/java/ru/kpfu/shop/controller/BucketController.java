@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import ru.kpfu.shop.model.Bucket;
 import ru.kpfu.shop.repository.BucketRepository;
 import ru.kpfu.shop.service.BucketService;
 import ru.kpfu.shop.util.SecurityUtils;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/bucket")
@@ -36,14 +39,28 @@ public class BucketController {
 
     @RequestMapping(value = "/changeNumberProduct", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void changeNumberProduct(@RequestParam("product_id") Long id, @RequestParam("number") Integer number) {
+    public void changeNumberProduct(@RequestParam("id") Long id, @RequestParam("number") Integer number) {
         bucketService.changeNumberProduct(id, number);
     }
 
-    @RequestMapping(value = "/bucket", method = RequestMethod.GET)
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String getBucketPage(Model model) {
         model.addAttribute("buckets", bucketRepository.findAllByUser(SecurityUtils.getCurrentUser()));
         return "basket";
+    }
+
+    @RequestMapping(value = "/buy", method = RequestMethod.GET)
+    public String buyProductsPage(Model model) {
+        List<Bucket> bucketList = bucketRepository.findAllByUser(SecurityUtils.getCurrentUser());
+        Integer sum = 0;
+        for (Bucket bucket : bucketList) {
+            sum += (bucket.getNumberProduct() * bucket.getProduct().getPrice());
+        }
+        model.addAttribute("buckets", bucketList);
+        model.addAttribute("sum", sum);
+
+        return "order";
+
     }
 
 
