@@ -3,9 +3,9 @@
 <form class="form-horizontal" role="form" action="/admin/add-category" method="post">
     <h2 class="form-signin-heading">Добавить категорию</h2>
     <div class="form-group">
-        <label >Описание</label>
+        <label >Имя</label>
         <div class="col-md-5">
-            <input type="text" name="description" class="form-control" placeholder="Описание" required autofocus>
+            <input type="text" name="name" class="form-control" placeholder="Имя категории" required autofocus>
         </div>
     </div>
     <div class="col-md-5">

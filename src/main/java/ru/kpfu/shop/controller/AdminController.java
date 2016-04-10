@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.kpfu.shop.form.ProductForm;
+import ru.kpfu.shop.model.Category;
 import ru.kpfu.shop.repository.CategoryRepository;
 import ru.kpfu.shop.repository.ProductRepository;
 import ru.kpfu.shop.service.ProductService;
@@ -33,7 +35,6 @@ public class AdminController {
 
     @RequestMapping(value = "/add-product", method = RequestMethod.GET)
     public String addProduct(Model model) {
-        PropertyPath.getPath();
         model.addAttribute("categories", categoryRepository.findAll());
         return "add-product";
     }
@@ -44,6 +45,17 @@ public class AdminController {
         return "redirect:/admin/add-product";
     }
 
+    @RequestMapping(value = "/add-category", method = RequestMethod.GET)
+    public String addCategory(Model model) {
+        return "add-category";
+    }
+    @RequestMapping(value = "/add-category", method = RequestMethod.POST)
+    public String saveCategory(@RequestParam String name, Model model) {
+        Category category = new Category();
+        category.setName(name);
+        categoryRepository.save(category);
+        return "add-category";
+    }
     @RequestMapping(value = "/products", method = RequestMethod.GET)
     public String getAllProducts(Model model) {
         model.addAttribute("products", productRepository.findAll());
