@@ -14,6 +14,11 @@ public class RegistrationController {
     @Autowired
     UserService userService;
 
+    /**
+     * Регистрация пользователя, данные из запроса поступают в UserForm
+     * @param userForm
+     * @return
+     */
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute UserForm userForm) {
 
@@ -21,6 +26,11 @@ public class RegistrationController {
         return "redirect:/login";
     }
 
+    /**
+     * Проверка занятости логина
+     * @param login
+     * @return
+     */
     @RequestMapping(value = "/checkLogin", method = RequestMethod.POST)
     @ResponseBody
     public String checkLogin(@RequestParam String login) {

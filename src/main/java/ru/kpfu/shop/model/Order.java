@@ -3,6 +3,7 @@ package ru.kpfu.shop.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -18,6 +19,9 @@ public class Order {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     User user;
+
+    public Order() {
+    }
 
 
     public Long getId() {

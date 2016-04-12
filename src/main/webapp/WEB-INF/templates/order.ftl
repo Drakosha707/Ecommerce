@@ -31,7 +31,7 @@
                             Дом: ${shipping.house} <br>
                         </div>
                     </div>
-                    <button class="btn btn-success btn-block">Оформить</button>
+                    <button class="btn btn-success btn-block" id="buyProducts" onclick="buyProducts()">Оформить</button>
                 <#else>
                     <a href="/settings">Пожалуйста заполните информацию по доставке</a>
                 </#if>

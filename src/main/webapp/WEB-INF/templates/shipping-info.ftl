@@ -25,4 +25,4 @@
 </div> <!-- /container -->
 
 </#macro>
-<@main title="Корзина" customStyles=["/css/bucket.css"] customScripts=["/js/bucket.js"]/>
+<@main title="Доставка" customStyles=["/css/bucket.css"] customScripts=["/js/bucket.js"]/>

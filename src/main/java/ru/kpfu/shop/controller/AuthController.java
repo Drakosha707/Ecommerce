@@ -21,6 +21,12 @@ public class AuthController {
         return "index";
     }
 
+    /**
+     *Страница входа
+     * @param error
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String getLoginPage(@RequestParam(value = "error", required = false) Boolean error,
                                Model model) {
@@ -30,11 +36,19 @@ public class AuthController {
         return "login";
     }
 
+    /**
+     * Страница с регистрацией пользователя
+     * @return
+     */
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String getRegistrationPage() {
         return "registration";
     }
 
+    /**
+     * Страница со всеми продуктами
+     * @return
+     */
     @RequestMapping(value = "/products")
     public String getProductsPage() {
 

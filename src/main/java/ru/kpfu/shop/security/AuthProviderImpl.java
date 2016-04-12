@@ -24,6 +24,12 @@ public class AuthProviderImpl implements AuthenticationProvider {
 
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
+    /**
+     * Авторизуем пользователя
+     * @param authentication
+     * @return
+     * @throws AuthenticationException
+     */
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String login = authentication.getName();

@@ -21,7 +21,6 @@
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-jpa:1.7.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-commons:1.9.2.RELEASE" />
-          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.8.4" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.10" />
           <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.10" />
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:4.2.4.RELEASE" />
@@ -66,6 +65,9 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.2.3" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.2.3" />
           <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.6" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.7.4" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.7.4" />
+          <element id="library" level="project" name="Maven: org.mockito:mockito-all:1.9.5" />
         </element>
       </element>
       <element id="directory" name="META-INF">

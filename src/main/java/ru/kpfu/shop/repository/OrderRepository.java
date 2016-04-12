@@ -3,7 +3,9 @@ package ru.kpfu.shop.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.kpfu.shop.model.ShippingInfo;
+import ru.kpfu.shop.model.Order;
+
 @Repository
-public interface ShippingRepository extends JpaRepository<ShippingInfo, Long> {
+public interface OrderRepository extends JpaRepository<Order, Long> {
+    
 }

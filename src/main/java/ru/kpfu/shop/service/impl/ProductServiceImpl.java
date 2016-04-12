@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import ru.kpfu.shop.annotation.TimeLog;
 import ru.kpfu.shop.form.ProductForm;
 import ru.kpfu.shop.model.Category;
 import ru.kpfu.shop.model.Product;
@@ -28,6 +29,11 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductRepository productRepository;
 
+    /**
+     * Сохранение продукта
+     * @param productForm
+     */
+    @TimeLog
     @Override
     @Transactional
     public void saveProduct(ProductForm productForm) {
@@ -38,6 +44,7 @@ public class ProductServiceImpl implements ProductService {
         String newFileName = null;
         MultipartFile file = productForm.getImg();
         File dir = null;
+        //Загрузка картинки
         if (!file.isEmpty()) {
             try {
                 byte[] bytes = file.getBytes();
@@ -45,10 +52,12 @@ public class ProductServiceImpl implements ProductService {
                 if (!dir.exists()) {
                     dir.mkdirs();
                 }
+                //генерируем имя картинке
                 newFileName = UUID.randomUUID().toString() + "."
                         + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".") + 1);
                 File serverFile = new File(dir.getAbsolutePath()
                         + File.separator + newFileName);
+                //сохраняем картинку
                 try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile))) {
                     stream.write(bytes);
                 }
@@ -61,6 +70,13 @@ public class ProductServiceImpl implements ProductService {
         productRepository.save(product);
     }
 
+
+    /**
+     * Поиск продуктов по категории
+     * @param categoryId
+     * @return
+     */
+    @TimeLog
     @Override
     public List<Product> findByCategoryId(Long categoryId) {
         Category category = categoryRepository.findOne(categoryId);

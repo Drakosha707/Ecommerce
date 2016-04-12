@@ -18,6 +18,19 @@
             <div class="col-md-9">
 
                 <div class="row">
+                    <div class="col-xs-12" style="margin-bottom: 20px;">
+                        <h3>Фильтр:</h3>
+                        <select name="filter" class="form-control" id="filter" onchange="filterProduct()">
+                            <option value="">Выбрать фильтр</option>
+                            <option value="priceUp">По цене ( А - Я )</option>
+                            <option value="priceDown">По цене ( Я - А )</option>
+                            <option value="nameUp">По имени ( А - Я )</option>
+                            <option value="nameDown">По имени ( Я - А )</option>
+                        </select>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
                    <#if products?has_content>
                        <#list products as product>
                            <div class="col-sm-4 col-lg-4 col-md-4">
@@ -41,4 +54,4 @@
         </div>
     </div>
 </#macro>
-<@main title="Вход" customStyles=["css/shop-homepage.css"] customScripts=["js/bucket.js"]/>
+<@main title="Все продукты" customStyles=["css/shop-homepage.css"] customScripts=["js/bucket.js", "js/filter.js"]/>

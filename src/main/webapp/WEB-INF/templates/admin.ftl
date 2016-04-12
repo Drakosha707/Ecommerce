@@ -35,6 +35,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="/admin/add-product">Добавить товар</a></li>
                 <li><a href="/admin/add-category">Добавить категорию</a></li>
+                <li><a href="/admin/orders">Заказы</a></li>
                 <li><a href="/products">Перейти на сайт</a></li>
                 <li><a href="/logout">Выйти</a></li>
             </ul>

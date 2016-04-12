@@ -21,6 +21,13 @@ public class MainController {
     @Autowired
     ShippingRepository shippingRepository;
 
+    /**
+     * Страница с информацией о доставке
+     * Если пользователь еще не заполнял то возвращаем shipping-info
+     * иначе shipping
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/settings", method = RequestMethod.GET)
     public String getSettingsPage(Model model) {
         ShippingInfo shippingInfo = userRepository.findOne(SecurityUtils.getCurrentUser().getId()).getShippingInfo();
@@ -31,6 +38,12 @@ public class MainController {
         return "shipping-info";
     }
 
+    /**
+     * Сохранение или обновление информации о доставке
+     * @param shippingInfo
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/shipping", method = RequestMethod.POST)
     public String saveShippingInfo(@ModelAttribute ShippingInfo shippingInfo, Model model) {
         User user = userRepository.findOne(SecurityUtils.getCurrentUser().getId());

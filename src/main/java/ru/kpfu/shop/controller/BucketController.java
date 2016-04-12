@@ -13,6 +13,7 @@ import ru.kpfu.shop.model.ShippingInfo;
 import ru.kpfu.shop.repository.BucketRepository;
 import ru.kpfu.shop.repository.UserRepository;
 import ru.kpfu.shop.service.BucketService;
+import ru.kpfu.shop.service.OrderService;
 import ru.kpfu.shop.util.SecurityUtils;
 
 import java.util.List;
@@ -30,30 +31,56 @@ public class BucketController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    OrderService orderService;
+
+    /**
+     * Добавление продукта в корзину
+     * @param id
+     */
     @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void addProduct(@RequestParam Long id) {
         bucketService.addProduct(id);
     }
 
+    /**
+     * Удаление продукта из корзины
+     * @param id
+     */
     @RequestMapping(value = "/deleteProduct", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void deleteProduct(@RequestParam Long id) {
         bucketService.deleteProduct(id);
     }
 
+    /**
+     * Изменение количества товаров в корзине
+     * @param id
+     * @param number
+     */
     @RequestMapping(value = "/changeNumberProduct", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void changeNumberProduct(@RequestParam("id") Long id, @RequestParam("number") Integer number) {
         bucketService.changeNumberProduct(id, number);
     }
 
+    /**
+     * Отображение всех товаров в корзине
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String getBucketPage(Model model) {
         model.addAttribute("buckets", bucketRepository.findAllByUser(SecurityUtils.getCurrentUser()));
         return "basket";
     }
 
+    /**
+     * Страница с подтверждением покупки
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/buy", method = RequestMethod.GET)
     public String buyProductsPage(Model model) {
         List<Bucket> bucketList = bucketRepository.findAllByUser(SecurityUtils.getCurrentUser());
@@ -69,6 +96,11 @@ public class BucketController {
 
         return "order";
 
+    }
+
+    @RequestMapping(value = "/buyProducts", method = RequestMethod.POST)
+    public void buyProducts() {
+        orderService.buyProducts();
     }
 
 

@@ -4,6 +4,7 @@ package ru.kpfu.shop.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.kpfu.shop.annotation.TimeLog;
 import ru.kpfu.shop.model.Bucket;
 import ru.kpfu.shop.model.Product;
 import ru.kpfu.shop.model.User;
@@ -25,6 +26,12 @@ public class BucketServiceImpl implements BucketService{
     @Autowired
     UserRepository userRepository;
 
+    /**
+     * Добавляем товар в корзину, проверяем если товар уже есть в корзине, то количество
+     * увеличиваем на 1
+     * @param productId
+     */
+    @TimeLog
     @Override
     @Transactional
     public void addProduct(Long productId) {
@@ -43,12 +50,22 @@ public class BucketServiceImpl implements BucketService{
         bucketRepository.save(bucket);
     }
 
+    /**
+     * Удаляем товар из корзины по ID
+     * @param id
+     */
     @Override
     @Transactional
-    public void deleteProduct(Long productId) {
-        bucketRepository.delete(productId);
+    public void deleteProduct(Long id) {
+        bucketRepository.delete(id);
     }
 
+
+    /**
+     *  Изменяем количество товаров в корзине
+     * @param bucketId
+     * @param numberProduct
+     */
     @Override
     @Transactional
     public void changeNumberProduct(Long bucketId, Integer numberProduct) {

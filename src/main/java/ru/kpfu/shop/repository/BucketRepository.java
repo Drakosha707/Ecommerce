@@ -9,7 +9,15 @@ import ru.kpfu.shop.model.User;
 import java.util.List;
 
 @Repository
-public interface BucketRepository extends JpaRepository<Bucket, Long>{
+public interface BucketRepository extends JpaRepository<Bucket, Long> {
+
+
+    /**
+     * Ищем есть ли товар в корзине
+     * @param product
+     * @param user
+     * @return
+     */
     Bucket findOneByProductAndUser(Product product, User user);
 
     List<Bucket> findAllByUser(User currentUser);

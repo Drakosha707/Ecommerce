@@ -19,4 +19,4 @@
     </header>
 </div>
 </#macro>
-<@main title="Вход" customStyles=["css/heroic-features.css"]/>
+<@main title="Привет" customStyles=["css/heroic-features.css"]/>

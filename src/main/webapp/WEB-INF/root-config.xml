@@ -12,4 +12,5 @@
 
     <import resource="persistence-config.xml"/>
     <import resource="security-config.xml"/>
+    <import resource="aop-config.xml"/>
 </beans>

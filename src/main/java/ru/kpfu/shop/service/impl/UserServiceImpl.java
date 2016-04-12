@@ -16,8 +16,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
+    //Для шифрования пароля
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
+    /**
+     * Регестрируем нового пользователя
+     * @param userForm
+     */
     @Override
     public void registrateUser(UserForm userForm) {
         User user = new User();
@@ -27,6 +32,11 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    /**
+     * Проверяем занят ли логин
+     * @param login
+     * @return
+     */
     @Override
     public boolean checkLogin(String login) {
         userRepository.findOneByLogin(login);

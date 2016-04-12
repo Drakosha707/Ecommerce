@@ -1,4 +1,5 @@
 
+//Добавление товара в корзину
 function addBucket(id) {
     $.ajax({
         url: "/bucket/addProduct",
@@ -12,7 +13,7 @@ function addBucket(id) {
         }
     })
 }
-
+//Удаление товара из корзины
 function deleteProduct(id) {
     $.ajax({
         url: "/bucket/deleteProduct",
@@ -26,6 +27,7 @@ function deleteProduct(id) {
         }
     })
 }
+//Изменение количества товаров в корзине
 function changeNumberProduct(id) {
     var numberProduct = $('#numberProduct'+id).val();
     $.ajax({
@@ -37,6 +39,18 @@ function changeNumberProduct(id) {
         },
         success: function () {
             alert('Изменено');
+            return true;
+        }
+    })
+}
+
+function buyProducts() {
+    $.ajax({
+        url: "/bucket/buyProducts",
+        type: "POST",
+        success: function () {
+            alert('Оформлено');
+            window.location.href = "/products";
             return true;
         }
     })
